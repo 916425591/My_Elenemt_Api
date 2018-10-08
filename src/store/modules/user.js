@@ -1,21 +1,21 @@
 import { loginUsername, logout, getUestInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
-const  user={
-  state:{
-    user:'',
-    status:'',
-    code:'',
-    token:getToken(),
-    name:'',
-    avatar:'',
-    introduction:'',
-    roles:[],
-    setting:{
-      articlePlatform:[]
+const user = {
+  state: {
+    user: '',
+    status: '',
+    code: '',
+    token: getToken(),
+    name: '',
+    avatar: '',
+    introduction: '',
+    roles: [],
+    setting: {
+      articlePlatform: []
     }
   },
-  mutations:{
+  mutations: {
     SET_CODE: (state, code) => {
       state.code = code
     },
@@ -41,10 +41,67 @@ const  user={
       state.roles = roles
     }
   },
-  actions:{
-    LoginByUsername({commit},userInfo){
+  actions: {
+    // 调用登陆接口进行登陆
+    LoginByUsername({ commit }, userInfo) {
       const username = userInfo.username.trim()
+      return new Promise((resolve, reject) => {
+        loginUsername(username, userInfo.password).then(response => {
+          const data = response.data
+          commit('SET_TOKEN', data.token)
+          setToken(response.data.token)
+          resolve
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // 获取用户信息
+    GetUserInfo({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        getUestInfo(state.token).then(response => {
+          if (!response.data) { // 由于mockjs 不支持自定义状态码只能这样hack
+            reject('error')
+          }
+          const data = response.data
+          commit('SET_ROLES', data.roles)
+          commit('SET_NAME', data.name)
+          commit('SET_AVATAR', data.avatar)
+          commit('SET_INTRODUCTION', data.introduction)
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // 第三方验证登录
+    // LoginByThirdparty({ commit, state }, code) {
+    //   return new Promise((resolve, reject) => {
+    //     commit('SET_CODE', code)
+    //     loginByThirdparty(state.status, state.email, state.code).then(response => {
+    //       commit('SET_TOKEN', response.data.token)
+    //       setToken(response.data.token)
+    //       resolve()
+    //     }).catch(error => {
+    //       reject(error)
+    //     })
+    //   })
+    // },
+    // 登出
+    LogOut({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        logout(state.token).then(() => {
+          commit('SET_TOKEN', '')
+          commit('SET_ROLES', [])
+          removeToken()
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
   }
 }
+
+export default user
 
