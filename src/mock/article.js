@@ -6,7 +6,7 @@ const List = []
 const count = 100
 
 for(let i=0;i<count;i++){
-  list.push(Mock.mock({
+  List.push(Mock.mock({
     id: '@increment',
     timestamp: +Mock.Random.date('T'),
     author: '@first',
