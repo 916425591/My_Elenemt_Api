@@ -1,4 +1,4 @@
-// 一些公有的常见方法
+// 一些公有的常见方法解析url
 export function paramObj(url) {
   const search = url.split('?')[1]
   if (!search) {
