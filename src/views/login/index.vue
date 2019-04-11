@@ -18,14 +18,14 @@
     data() {
       const validateUsername = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('请输入用户名'));
+          return callback('请输入用户名')
         }else{
           callback()
         }
       };
       const validatePassword = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('请输入密码'));
+          return callback('请输入密码')
         }else{
           callback()
         }
@@ -55,7 +55,7 @@
       handleLogin() {
         this.$refs.loginForm.validate(valid => {
           if (valid) {
-            this.loading = true
+            this.loading = true;
             this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
               this.loading = false
               this.$router.push({ path: '/' })

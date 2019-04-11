@@ -1,11 +1,11 @@
 //文章新闻
 import Mock from 'mockjs'
-import { paramObj } from '@/utils'
+import {paramObj} from '@/utils'
 
 const List = []
 const count = 100
 
-for(let i=0;i<count;i++){
+for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: '@increment',
     timestamp: +Mock.Random.date('T'),
@@ -23,7 +23,7 @@ for(let i=0;i<count;i++){
 
 export default {
   getList: config => {
-    const { importance, type, title, page = 1, limit = 20, sort } = paramObj(config.url)
+    const {importance, type, title, page = 1, limit = 20, sort} = paramObj(config.url)
     let mockList = List.filter(item => {
       if (importance && item.importance !== +importance) return false
       if (type && item.type !== type) return false
@@ -42,13 +42,13 @@ export default {
     }
   },
   getPv: () => ({
-    pvData: [{ key: 'PC', pv: 1024 }, { key: 'mobile', pv: 1024 }, { key: 'ios', pv: 1024 }, { key: 'android', pv: 1024 }]
+    pvData: [{key: 'PC', pv: 1024}, {key: 'mobile', pv: 1024}, {key: 'ios', pv: 1024}, {key: 'android', pv: 1024}]
   }),
   getArticle: () => ({
     id: 1000000,
-    author: { key: 'mockArticle' },
+    author: {key: 'mockArticle'},
     source_name: '原创作者',
-    category_item: [{ key: 'global', name: '大中国' }],
+    category_item: [{key: 'global', name: '大中国'}],
     comment_disabled: true,
     content: '<p>我是测试新闻</p><p><img class="wscnph" src="http://pic.qiantucdn.com/58pic/19/36/08/77m58PICIWg_1024.jpg!qtwebp324" data-wscntype="image" data-wscnh="300" data-wscnw="400" data-mce-src="http://pic.qiantucdn.com/58pic/19/36/08/77m58PICIWg_1024.jpg!qtwebp324"></p>"',
     content_short: '我是Elenemt_Api',

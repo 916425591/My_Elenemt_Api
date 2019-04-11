@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import { generateTitle } from '@/utils/i18n'
   export default {
     created() {
       this.getBreadcrumb()
@@ -32,7 +33,8 @@
           matched = [{ path: '/dashboard', meta: { title: 'dashboard' }}].concat(matched)
         }
         this.levelList = matched
-      }
+      },
+      generateTitle
     }
   }
 </script>
