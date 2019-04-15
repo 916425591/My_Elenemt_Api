@@ -97,7 +97,35 @@ export const asyncRouterMap = [
         path: 'list',
         component: _import('user-list/index'),
         name: 'usetList',
-        meta: {title: 'usetList', icon: 'bug'}
+        meta: {title: 'Uset List', icon: 'bug'}
+      }
+    ]
+  },
+  {
+    path: '/svg-icons',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'errorPages',
+    children: [
+      {
+        path: 'icons',
+        component: _import('svg-icons/index'),
+        name: 'icons',
+        meta: {title: 'icons', icon: 'bug'}
+      }
+    ]
+  },
+  {
+    path: '/authorization',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'errorPages',
+    children: [
+      {
+        path: 'icons',
+        component: _import('authorization/index'),
+        name: 'authorization',
+        meta: {title: 'Authorization', icon: 'bug'}
       }
     ]
   },

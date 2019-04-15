@@ -2,6 +2,8 @@ import Mock from 'mockjs'
 import loginAPI from './login'
 import articleAPI from './article'
 import searcbAPI from './searchList'
+import userAPI from './user'
+import transactionAPI from './transaction'
 /*login lyj */
 Mock.mock(/\/login\/login/, 'post', loginAPI.LoginByUsername)
 Mock.mock(/\/login\/logout/, 'post', loginAPI.logout)
@@ -16,5 +18,12 @@ Mock.mock(/\/article\/update/, 'post', articleAPI.updateArticle)
 
 /*search lyj*/
 Mock.mock(/\/search\/user/, 'get', searcbAPI.searchUser)
+
+/*user lyj*/
+Mock.mock(/\/user\/userList/, 'post', userAPI.getUserList)
+Mock.mock(/\/user\/user/, 'post', userAPI.getUser)
+
+/*transaction*/
+Mock.mock(/\/transaction\/list/, 'get', transactionAPI.fetchList)
 
 export default Mock

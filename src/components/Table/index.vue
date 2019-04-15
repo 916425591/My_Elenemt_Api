@@ -13,7 +13,7 @@
           {{ value }}
         </td>
         <td v-if="operates"  class="operates">
-          <span v-for="(btn, key) in operates.list"  @click.native.prevent="btn.method(key,scope)">
+          <span v-for="(btn, key) in operates.list"  @click="btn.method(index,single)">
             <i :icon="btn.icon"></i>{{ btn.label }}
           </span>
         </td>

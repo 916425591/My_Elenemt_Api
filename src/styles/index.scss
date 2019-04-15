@@ -24,6 +24,22 @@ html {
   box-sizing: border-box;
 }
 
+ul{
+  padding: 0px;
+  margin: 0px;
+}
+li{
+  list-style: none;
+}
+
+button{
+  cursor: pointer;
+  outline:none;
+}
+input{
+  outline:none
+}
+
 #app{
   height: 100%;
 }
@@ -193,3 +209,4 @@ code {
 .multiselect--active {
   z-index: 1000 !important;
 }
+

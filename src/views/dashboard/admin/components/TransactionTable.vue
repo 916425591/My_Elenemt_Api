@@ -1,8 +1,8 @@
 <template>
   <el-table :data="list" style="width: 100%;padding-top: 15px;">
-    <el-table-column label="Order_No" show-overflow-tooltip>
+    <el-table-column label="Code" show-overflow-tooltip>
       <template slot-scope="scope">
-        {{scope.row.order_no}}
+        {{scope.row.code}}
       </template>
     </el-table-column>
     <el-table-column label="Price" width="195" align="center">
@@ -42,7 +42,7 @@ export default {
   methods: {
     fetchData() {
       fetchList().then(response => {
-        this.list = response.data.items.slice(0, 7)
+        this.list = response.data.items.slice(0, 3)
       })
     }
   }

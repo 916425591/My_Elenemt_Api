@@ -9,7 +9,8 @@
          </button>
       </span>
       <span class="float-r layout-search-box">
-        <input class="ts-form-input" autocomplete="off" type="text" v-model.trim="search" placeholder="搜索"
+        <input class="ts-form-input" autocomplete="off" type="text" v-model.trim="search" :placeholder="placeholder"
+               @focus="foucusPlace" @blur="blurPlace" @keyup.enter="enter(search)"
                data-category="登录名，用户名">
       </span>
     </div>
@@ -28,33 +29,16 @@
 
 <script>
   import myTable from '@/components/Table/index'
+  import {getUserList, getUser} from '@/api/user'
 
   export default {
     components: {myTable},
     name: "index",
     data() {
       return {
+        placeholder: '搜索',
         search: '',
-        list: [
-          {
-            id: '1',//序号
-            roleName: 'admin',//登录名
-            roleCode: 'admin',//用户名
-            opCode: 'dcv',// 所属组织
-            emailAdress:'1232@qq.com',//电子邮箱
-            mobileNo: '13322332233',//电话
-            shortName: 'admin'//所属角色
-          },
-          {
-            id: '2',
-            roleName: 'test',
-            roleCode: 'test',
-            opCode: 'dcv',
-            emailAdress:'1232@qq.com',
-            mobileNo: '13322332233',
-            shortName: 'test'
-          }
-        ], // table数据
+        list: [], // table数据
         options: {
           stripe: true, // 是否为斑马纹 table
           loading: false, // 是否添加表格loading加载动画
@@ -97,13 +81,11 @@
             label: '所属角色',
             align: 'center',
           }
-
-
         ], // 需要展示的列
         operates: {
           width: 200,
           fixed: 'right',
-          title:'操作',
+          title: '操作',
           list: [
             {
               id: '1',
@@ -142,6 +124,9 @@
         } // 列操作按钮
       }
     },
+    mounted() {
+      this.userInit({})
+    },
     methods: {
       // 选中行
       handleSelectionChange(val) {
@@ -156,6 +141,26 @@
       handleDel(index, row) {
         console.log(' index:', index)
         console.log(' row:', row)
+      },
+      //初始化
+      userInit() {
+        getUserList('getUserList', 123).then(response => {
+          this.list = response.data.list
+        })
+      },
+      //获取焦点
+      foucusPlace() {
+        this.placeholder = '登录名，用户名'
+      },
+      //失去焦点 好lou呀
+      blurPlace() {
+        this.placeholder = '搜索'
+      },
+      //回车搜索
+      enter(search) {
+          getUser(search).then(response => {
+            this.list = response.data.items
+          })
       }
     }
   }
@@ -168,7 +173,8 @@
     font-size: 16px;
     background: #fff;
     box-sizing: border-box;
-    .form-button-wrapper{
+
+    .form-button-wrapper {
       height: 63px;
       padding: 0px 18px;
       width: 100%;
@@ -176,20 +182,21 @@
       line-height: 62px;
       border-bottom: 1px solid #ddd;
     }
-    .ts-form-button{
+
+    .ts-form-button {
       position: relative;
       display: inline-block;
-      min-width:70px;
-      height:30px;
-      margin:0px;
-      padding:0px 8px;
-      border:1px solid #ddd;
-      border-radius:2px;
-      line-height:28px;
-      text-align:center;
-      font-size:12px;
-      outline:none;
-      white-space:nowrap;
+      min-width: 70px;
+      height: 30px;
+      margin: 0px;
+      padding: 0px 8px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      line-height: 28px;
+      text-align: center;
+      font-size: 12px;
+      outline: none;
+      white-space: nowrap;
       background-color: #fff;
       cursor: pointer;
       vertical-align: middle;
@@ -202,18 +209,22 @@
       -o-transition: all 0.3s;
       transition: all 0.3s;
     }
+
     .btn-primary {
       border-color: #FF762A;
       background-color: #FF762A;
       color: #fff;
     }
-    .float-r{
+
+    .float-r {
       float: right;
     }
-    .layout-search-box{
+
+    .layout-search-box {
       width: 338px;
       position: relative;
     }
+
     .layout-search-box input {
       width: 100%;
       height: 36px;
