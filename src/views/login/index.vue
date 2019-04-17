@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <css-from></css-from>
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
       <el-form-item prop="username">
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
@@ -13,8 +14,10 @@
 </template>
 
 <script>
+  import cssFrom  from '@/components/Css3D/index'
   export default {
     name: 'login',
+    components:{cssFrom},
     data() {
       const validateUsername = (rule, value, callback) => {
         if (!value) {

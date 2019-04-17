@@ -15,12 +15,15 @@
         <div class="model-concent">
           <ul class="model-concent-ul model-top-ul">
             <li>您需要新的软件许可？</li>
-            <li>1，拷贝项目码和机器码;</li>
-            <li>2，发送给代理商或者uinnova公司</li>
-            <li>3，uinnova联系方式：<a style="color:#1A73E8">supportort@uinnova.com</a></li>
-            <li>
+            <li>1、拷贝项目码和机器码;</li>
+            <li>2、发送给代理商或者uinnova公司</li>
+            <li>3、uinnova联系方式：<a style="color:#1A73E8">supportort@uinnova.com</a></li>
+            <li class="auth-line">
               <p><span>项目码：</span>{{data.name}}</p>
               <p><span>机器码：</span>{{data.code}}</p>
+            </li>
+            <li>
+              <button class="auth-submit">授权</button>
             </li>
           </ul>
         </div>
@@ -82,12 +85,34 @@
       margin: 0px;
       padding: 10px 0px;
       li{
-        padding: 10px 0px;
+        margin: 14px 0px;
         list-style: none;
         .btn-aut{
           margin-left: 48px;
           color: #1A73E8;
         }
+      }
+      .auth-line{
+        width:294px ;
+        height:108px ;
+        border-left:1px solid #DADADA;
+        border-right:1px solid #DADADA;
+        border-bottom:1px solid #DADADA;
+        p{
+          height: 53px;
+          line-height: 53px;
+          padding: 0px 19px;
+          margin: 0px;
+          border-top: 1px solid #DADADA;
+        }
+      }
+      .auth-submit{
+        background: #FF7A1E;
+        border-radius:2px ;
+        border: none;
+        color: #ffffff;
+        width: 86px;
+        height: 30px;
       }
     }
   }

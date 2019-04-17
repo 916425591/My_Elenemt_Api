@@ -119,13 +119,23 @@ export const asyncRouterMap = [
     path: '/authorization',
     component: Layout,
     redirect: 'noredirect',
-    name: 'errorPages',
+    name: 'authorization',
+    meta: {
+      title: 'authorization',
+      icon: '404'
+    },
     children: [
       {
-        path: 'icons',
+        path: 'authorization',
         component: _import('authorization/index'),
         name: 'authorization',
-        meta: {title: 'Authorization', icon: 'bug'}
+        meta: {title: 'Authorization', icon: 'bug',noCache: true}
+      },
+      {
+        path: 'interface',
+        component: _import('authorization/interface'),
+        name: 'interface',
+        meta: {title: 'Interface', icon: 'bug',noCache: true}
       }
     ]
   },

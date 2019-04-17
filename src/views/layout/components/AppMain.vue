@@ -1,5 +1,5 @@
 <template>
-  <section class="app-main" style="min-height: 100%">
+  <section class="app-main" style="height: calc(100% - 120px);margin: 18px;background: #fcfcfc;    box-shadow: 0px 0px 10px #ddd;">
     <transition name="fade" mode="out-in">
       <keep-alive :include="cachedViews">
         <router-view></router-view>
