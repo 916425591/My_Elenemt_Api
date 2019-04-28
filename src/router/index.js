@@ -88,20 +88,6 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/user-list',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'errorPages',
-    children: [
-      {
-        path: 'list',
-        component: _import('user-list/index'),
-        name: 'usetList',
-        meta: {title: 'Uset List', icon: 'bug'}
-      }
-    ]
-  },
-  {
     path: '/svg-icons',
     component: Layout,
     redirect: 'noredirect',
@@ -112,30 +98,6 @@ export const asyncRouterMap = [
         component: _import('svg-icons/index'),
         name: 'icons',
         meta: {title: 'icons', icon: 'bug'}
-      }
-    ]
-  },
-  {
-    path: '/authorization',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'authorization',
-    meta: {
-      title: 'authorization',
-      icon: '404'
-    },
-    children: [
-      {
-        path: 'authorization',
-        component: _import('authorization/index'),
-        name: 'authorization',
-        meta: {title: 'Authorization', icon: 'bug',noCache: true}
-      },
-      {
-        path: 'interface',
-        component: _import('authorization/interface'),
-        name: 'interface',
-        meta: {title: 'Interface', icon: 'bug',noCache: true}
       }
     ]
   },
